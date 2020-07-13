@@ -360,6 +360,9 @@ impl<
         // Then get the text from the clipboard and render the match output
         let clipboard = self.clipboard_manager.get_clipboard();
 
+        // Restore clipboard to its former state
+        self.clipboard_manager.set_clipboard(&previous_clipboard);
+
         if let Some(clipboard) = clipboard {
             // Don't expand empty clipboards, as usually they are the result of an empty passive selection
             if clipboard.trim().is_empty() {
