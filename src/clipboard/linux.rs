@@ -38,19 +38,6 @@ impl super::ClipboardManager for LinuxClipboardManager {
         None
     }
 
-    fn get_selection(&self) -> Option<String> {
-        let res = Command::new("xclip").args(&["-o", "-sel", "pri"]).output();
-
-        if let Ok(output) = res {
-            if output.status.success() {
-                let s = String::from_utf8_lossy(&output.stdout);
-                return Some((*s).to_owned());
-            }
-        }
-
-        None
-    }
-
     fn set_clipboard(&self, payload: &str) {
         let res = Command::new("xclip")
             .args(&["-sel", "clip"])
