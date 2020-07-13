@@ -30,6 +30,7 @@ mod macos;
 
 pub trait ClipboardManager {
     fn get_clipboard(&self) -> Option<String>;
+    fn get_selection(&self) -> Option<String>;
     fn set_clipboard(&self, payload: &str);
     fn set_clipboard_image(&self, image_path: &Path);
 }
